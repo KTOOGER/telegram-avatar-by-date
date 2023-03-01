@@ -35,14 +35,14 @@ client.start()
 
 async def main():
   now = datetime.now(args.tz)
-  filename = (now + timedelta(hours=args.hours_delta)).strftime(images_name_template)
-  file = Path(images_path + filename)
-  if file.is_file():
+  filename = (now + timedelta(hours=args.time_delta_hours)).strftime(images_name_template)
+  filepath = Path(images_path + filename)
+  if filepath.is_file():
     await client(DeletePhotosRequest(await client.get_profile_photos("me")))
-    file = await client.upload_file()
+    file = await client.upload_file(filepath)
     await client(UploadProfilePhotoRequest(file))
   else:
-    print('File "{filename}" not found')
+    print(f'File "{filepath}" not found')
 
 
 if __name__ == '__main__':

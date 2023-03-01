@@ -2,7 +2,7 @@ from os import getenv
 from dotenv import load_dotenv
 from pathlib import Path
 
-dotenv_path = Path('/.env.local')
+dotenv_path = Path('.env.local')
 
 load_dotenv(dotenv_path=dotenv_path)
 
@@ -15,6 +15,6 @@ sessions_path = getenv('SESSIONS_PATH') or "./sessions/"
 
 images_name_template = getenv('IMAGES_NAME_TEMPLATE') or "%m-%d.png"
 
-time_zone = getenv('IMAGES_PATH') or "Europe/Moscow"
+time_zone = getenv('TIME_ZONE') or "Europe/Moscow"
 
 time_delta_hours = getenv('TIME_DELTA_HOURS') or 0
