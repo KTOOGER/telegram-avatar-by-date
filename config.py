@@ -13,4 +13,8 @@ session_name = getenv('SESSION_NAME') or "default"
 images_path = getenv('IMAGES_PATH') or "./images/"
 sessions_path = getenv('SESSIONS_PATH') or "./sessions/"
 
+images_name_template = getenv('IMAGES_NAME_TEMPLATE') or "%m-%d.png"
+
 time_zone = getenv('IMAGES_PATH') or "Europe/Moscow"
+
+time_delta_hours = getenv('TIME_DELTA_HOURS') or 0

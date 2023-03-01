@@ -1,7 +1,7 @@
 from telethon import TelegramClient
 from telethon.tl.functions.photos import UploadProfilePhotoRequest, DeletePhotosRequest
-from config import api_hash, api_id, session_name, images_path, sessions_path, time_zone
-from datetime import datetime
+from config import api_hash, api_id, session_name, images_path, sessions_path, images_name_template, time_zone, time_delta_hours
+from datetime import datetime, timedelta
 from argparse import ArgumentParser, ArgumentTypeError
 from pytz import timezone
 from pathlib import Path
@@ -20,6 +20,7 @@ parser.add_argument("--api_id", required=False, help="user api ID", type=str, de
 parser.add_argument("--api_hash", required=False, help="user api Hash", type=str, default=api_hash)
 parser.add_argument("--tz", required=False, help="time zone", type=valid_tz, default=valid_tz(time_zone))
 parser.add_argument("--session_name", required=False, help="session name", type=str, default=session_name)
+parser.add_argument("--time_delta_hours", required=False, help="time delta hours", type=int, default=time_delta_hours)
 
 args = parser.parse_args()
 session_path = sessions_path + args.session_name
@@ -34,7 +35,7 @@ client.start()
 
 async def main():
   now = datetime.now(args.tz)
-  filename = str(now.month) + "-" + str(now.day) + ".png"
+  filename = (now + timedelta(hours=args.hours_delta)).strftime(images_name_template)
   file = Path(images_path + filename)
   if file.is_file():
     await client(DeletePhotosRequest(await client.get_profile_photos("me")))
