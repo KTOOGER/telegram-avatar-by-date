@@ -1,0 +1,1 @@
+SCHTASKS /Create /SC DAILY /ST "22:00" /TN "user\telegram-change-avatar" /TR "%~dp0%run.bat" /F
