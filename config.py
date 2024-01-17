@@ -10,6 +10,8 @@ api_id = getenv('API_ID')
 api_hash = getenv('API_HASH')
 session_name = getenv('SESSION_NAME') or "default"
 
+system_version = getenv('SYSTEM_VERSION')
+
 images_path = getenv('IMAGES_PATH') or "./images/"
 sessions_path = getenv('SESSIONS_PATH') or "./sessions/"
 
